@@ -2,7 +2,6 @@
 **/*.yaml
 **/*.ipynb
 randomscripts
-alembic.ini
 .vscode
 
 # Byte-compiled / optimized / DLL files
