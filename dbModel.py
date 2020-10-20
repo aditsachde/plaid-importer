@@ -38,7 +38,7 @@ class Balances(Base):
 
     id = Column("id", Integer, primary_key=True, index=True)
     account_id = Column("account_id", String, ForeignKey("accounts.account_id"), nullable=False)
-    available = Column("available", DECIMAL(precision=11, scale=2), nullable=False)
+    available = Column("available", DECIMAL(precision=11, scale=2), nullable=True)
     current = Column("current", DECIMAL(precision=11, scale=2), nullable=False)
     limit = Column("limit", DECIMAL(precision=11, scale=2), nullable=True)
     currency = Column("currency", String, nullable=False)
