@@ -21,6 +21,7 @@ import sys
 sys.path.insert(0,'.')
 from dbModel import Base
 target_metadata = Base.metadata
+from plaidClient import plaid_creds
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
@@ -40,7 +41,7 @@ def run_migrations_offline():
     script output.
 
     """
-    url = config.get_main_option("sqlalchemy.url")
+    url = plaid_creds.database
     context.configure(
         url=url,
         target_metadata=target_metadata,
