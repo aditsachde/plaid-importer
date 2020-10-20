@@ -1,6 +1,6 @@
-- [ ] Fetch historical transactions and put them in a database — No need for webhook support
-- [ ] Fetch account data and put them in a database
-- [ ] Fetch item data and put them in a database - for when there are multiple items
+- [X] Fetch historical transactions and put them in a database — No need for webhook support
+- [X] Fetch account data and put them in a database
+- [X] Fetch item data and put them in a database - for when there are multiple items
 - [ ] Duplicate authenticateAccount to support updating credentials 
 - [ ] Way to set webhooks - Probably through config file
 - [ ] Expand config file to include all config, not just a single set of credentials
