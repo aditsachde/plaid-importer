@@ -1,0 +1,14 @@
+- [ ] Fetch historical transactions and put them in a database — No need for webhook support
+- [ ] Fetch account data and put them in a database
+- [ ] Fetch item data and put them in a database - for when there are multiple items
+- [ ] Duplicate authenticateAccount to support updating credentials 
+- [ ] Way to set webhooks - Probably through config file
+- [ ] Expand config file to include all config, not just a single set of credentials
+- [ ] Add support for multiple items via a yaml array, not via item database
+- [ ] Handle DEFAULT_UPDATE webhook
+- [ ] Handle TRANSACTION_REMOVED webhook
+- [ ] Verify JWT
+
+- Webhooks are probably best served via FastAPI
+- Abstract the fetch transactions and deduplication logic into a function/file, it'll be needed for cronjobs and called from webhooks
+- Config file should include webhook url, api keys and environment, and array for items
