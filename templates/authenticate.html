@@ -1,0 +1,30 @@
+<button id="link-button">Link Account</button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+<script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
+<script type="text/javascript">
+  (function ($) {
+    var handler = Plaid.create({
+      token: "{{ link_token }}",
+      onLoad: function () {
+        console.log("loaded");
+      },
+      onSuccess: function (public_token, metadata) {
+        console.log(public_token);
+        console.log(metadata);
+        $.post("/publicToken", {
+          public_token: public_token,
+        }).then(setTimeout(() => window.close(), 2000));
+        //window.close();
+      },
+      onExit: function (err, metadata) {
+        console.log(err);
+        console.log(metadata);
+      },
+      onEvent: function (eventName, metadata) {},
+    });
+
+    $("#link-button").on("click", function (e) {
+      handler.open();
+    });
+  })(jQuery);
+</script>
