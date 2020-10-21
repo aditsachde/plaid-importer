@@ -1,6 +1,6 @@
 from logging.config import fileConfig
 
-from sqlalchemy import engine_from_config
+from sqlalchemy import create_engine
 from sqlalchemy import pool
 
 from alembic import context
@@ -21,6 +21,7 @@ import sys
 sys.path.insert(0,'.')
 from dbModel import Base
 target_metadata = Base.metadata
+from plaidClient import plaid_creds
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
@@ -40,9 +41,8 @@ def run_migrations_offline():
     script output.
 
     """
-    url = config.get_main_option("sqlalchemy.url")
     context.configure(
-        url=url,
+        url=plaid_creds.database,
         target_metadata=target_metadata,
         literal_binds=True,
         dialect_opts={"paramstyle": "named"},
@@ -59,11 +59,7 @@ def run_migrations_online():
     and associate a connection with the context.
 
     """
-    connectable = engine_from_config(
-        config.get_section(config.config_ini_section),
-        prefix="sqlalchemy.",
-        poolclass=pool.NullPool,
-    )
+    connectable = create_engine(plaid_creds.database)
 
     with connectable.connect() as connection:
         context.configure(
